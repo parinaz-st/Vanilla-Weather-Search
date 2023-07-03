@@ -14,9 +14,132 @@
   </head>
   <body>
     <div class="container">
-      <h1>Hellooooo</h1>
-      <a href="" class="btn btn-primary">click me</a>
-      <p>just for test</p>
+      <div class="col-7">
+        <div class="card mt-5 ml-5">
+          <div class="card-body">
+            <form>
+              <div class="mt-3">
+                <div class="row">
+                  <div class="col-3 mt-1">
+                    <h6>Resulst For <span id="cityLabel"></span></h6>
+                  </div>
+                  <div class="col-md-4">
+                    <input
+                      type="text"
+                      class="city-name"
+                      placeholder="Type YourCity Name"
+                      autofocus
+                    />
+                  </div>
+                  <div class="col-2">
+                    <button type="button" class="btn btn-info">Search</button>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-5">
+                    <span class="Current-wether-emoji">
+                      <p>
+                        🌤
+                        <span id="current-temp"></span> °
+                        <span class="conversion">
+                          <span id="celcius">C°</span>
+                        </span>
+                      </p>
+                    </span>
+                  </div>
+                  <div class="col-3">
+                    <p class="current-PHW mt-3">
+                      Precipitation: <span id="current-Precipitation">0</span>%
+                      <br />
+                      Humidity: <span id="current-Humidity"></span>% <br />Wind:
+                      <span id="current-wind"></span> km/h
+                    </p>
+                  </div>
+                  <div class="col-2">
+                    <p class="Weather-summery mt-3">
+                      <strong>Weather</strong><br /><text
+                        id="current-Day"
+                      ></text>
+                      <text id="current-time"></text>
+                      <br /><span id="current-descrion">Mostly cloudy</span>
+                    </p>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-2">
+                    <p class="clock">10:00</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="clock">11:00</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="clock">12:00</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="clock">13:00</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="clock">14:00</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <p class="days">Sun</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days">Mon</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days">Tue</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days">Wed</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days">Thu</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <p class="days-emoji">🌨</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days-emoji">🌨</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days-emoji">☀</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days-emoji">☀</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="days-emoji">☀</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <p class="minMax"><strong>7°</strong> 1°</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="minMax"><strong>23°</strong> 10°</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="minMax"><strong>30°</strong> 17°</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="minMax"><strong>20°</strong> 15°</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="minMax"><strong>24°</strong> 19°</p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <a href="https://github.com/parinaz-st/Vanilla-Weather-Search"> Coded By Parinaz</a>
+        </div>
     </div>
     <script src="src/index.js"></script>
   </body>
