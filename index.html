@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>The Weather App</title>
   </head>
   <body>
@@ -17,26 +18,26 @@
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
-            <h1>New York, NY, USA</h1>
+            <h1 id="currentTown">New York, NY, USA</h1>
             <ul>
               <li>
-                Friday 5:00
+                <span id="CurrentDay">Friday</span> <span id="CurrentTime">5:00</span>
               </li>
-              <li>Clear</li>
+              <li id="CurrentDesc">Clear</li>
             </ul>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="d-flex weather-temperature">
                 <img src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png" alt="Clear">
-               <strong>12</strong>  <small class="units">°C |<a href="#">°F</a></small>
+               <strong id="currentTemp">12</strong>  <small class="units">°C |<a href="#">°F</a></small>
               </div>
           </div>
             <div class="col-6">
               <ul>
-                <li>Precipitation 10%</li>
-                <li>Humidity 10%</li>
-                <li>Wind 10%</li>
+                <li>Precipitation <span id="percipitation">0</span>%</li>
+                <li>Humidity <span id="humidity">10</span>%</li>
+                <li>Wind <span id="wind">10</span>Km/h</li>
               </ul>
             </div>
         </div>
