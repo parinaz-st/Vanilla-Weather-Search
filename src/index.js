@@ -24,13 +24,21 @@ function getFormattedDay() {
   return dayArr[currentDay];
 }
 
+function getFormattedDateTime(timestamp) {
+  let date = new Date(timestamp);
+  let hour = date.getHours().toString.padStart(2, "0");
+  let minutes = date.getMinutes().toString().padStart(2, "0");
+  //Get FormattedDay()
+  // change this function to return both date and time
+}
+
 function displayTempurture(response) {
-  console.log(response);
   let currentTemp = Math.round(response.data.temperature.current);
   let currentTown = response.data.city;
   let currentDescription = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
   let wind = Math.round(response.data.wind.speed);
+  let timestamp = response.data.time;
 
   let htmlCurrentTemp = document.querySelector("#currentTemp");
   let htmlCurrentTown = document.querySelector("#currentTown");
@@ -47,6 +55,8 @@ function displayTempurture(response) {
   htmlCurrentTime.innerHTML = getFormattedTime();
   htmlHumidity.innerHTML = humidity;
   htmlWind.innerHTML = wind;
+
+  // getFormattedDateTime(timestamp);
 }
 
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
