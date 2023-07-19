@@ -33,12 +33,15 @@ function getFormattedDateTime(timestamp) {
 }
 
 function displayTempurture(response) {
+  console.log(response);
   let currentTemp = Math.round(response.data.temperature.current);
   let currentTown = response.data.city;
   let currentDescription = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
   let wind = Math.round(response.data.wind.speed);
   let timestamp = response.data.time;
+  let iconLink = response.data.condition.icon_url;
+  console.log(iconLink);
 
   let htmlCurrentTemp = document.querySelector("#currentTemp");
   let htmlCurrentTown = document.querySelector("#currentTown");
@@ -47,6 +50,7 @@ function displayTempurture(response) {
   let htmlCurrentTime = document.querySelector("#CurrentTime");
   let htmlHumidity = document.querySelector("#humidity");
   let htmlWind = document.querySelector("#wind");
+  let htmlIcon = document.querySelector("#icon");
 
   htmlCurrentTemp.innerHTML = currentTemp;
   htmlCurrentTown.innerHTML = currentTown;
@@ -55,12 +59,14 @@ function displayTempurture(response) {
   htmlCurrentTime.innerHTML = getFormattedTime();
   htmlHumidity.innerHTML = humidity;
   htmlWind.innerHTML = wind;
+  htmlIcon.setAttribute("src", iconLink);
+  
 
   // getFormattedDateTime(timestamp);
 }
 
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
-let city = "Tehran";
+let city = "Montreal";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
 
 console.log(`api URl ${currentWeatherApiUrl}`);
