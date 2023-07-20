@@ -75,7 +75,9 @@ function loadCityWeatherInfo(city){
   axios.get(currentWeatherApiUrl).then(displayTempurture);
 }
 function convertToFarenheight(event){
-  event.preventDefault();
+  event.preventDefault();  
+  celciousLink.classList.remove("active");
+  farenheightLink.classList.add("active");
   let fahrenheit = Math.round(((currentCelDegree * 9)/5) + 32);
   let HTMLcurrentCelDegree = document.querySelector("#currentTemp");
   HTMLcurrentCelDegree.innerHTML = fahrenheit;
@@ -83,9 +85,10 @@ function convertToFarenheight(event){
 }
 function fahrenheitToCelsius(event) {
   event.preventDefault();
-  let celsius = ((currentFarenheihtDegree - 32) * 5) / 9;
+  farenheightLink.classList.remove("active");
+  celciousLink.classList.add("active");
   let HTMLcurrentCFarDegree = document.querySelector("#currentTemp");
-  HTMLcurrentCFarDegree.innerHTML = Math.round(celsius);
+  HTMLcurrentCFarDegree.innerHTML = Math.round(currentCelDegree);
 }
 
 let currentCelDegree = null;
