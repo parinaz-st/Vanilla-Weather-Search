@@ -35,6 +35,7 @@ function getFormattedDateTime(timestamp) {
 function displayTempurture(response) {
   console.log(response);
   let currentTemp = Math.round(response.data.temperature.current);
+  currentCelDegree = response.data.temperature.current;
   let currentTown = response.data.city;
   let currentDescription = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
@@ -52,11 +53,11 @@ function displayTempurture(response) {
   let htmlWind = document.querySelector("#wind");
   let htmlIcon = document.querySelector("#icon");
 
-  htmlCurrentTemp.innerHTML = currentTemp;
   htmlCurrentTown.innerHTML = currentTown;
   htmlCurrentDesc.innerHTML = currentDescription;
   htmlCurrentDay.innerHTML = getFormattedDay();
   htmlCurrentTime.innerHTML = getFormattedTime();
+  htmlCurrentTemp.innerHTML = currentTemp;
   htmlHumidity.innerHTML = humidity;
   htmlWind.innerHTML = wind;
   htmlIcon.setAttribute("src", iconLink);
@@ -70,11 +71,25 @@ function searchCity(event){
   loadCityWeatherInfo(enteredCity.value);
 }
 function loadCityWeatherInfo(city){
-  // debugger;
   let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
   axios.get(currentWeatherApiUrl).then(displayTempurture);
 }
+function convertToFarenheight(event){
+  event.preventDefault();
+  let fahrenheit = Math.round(((currentCelDegree * 9)/5) + 32);
+  let HTMLcurrentCelDegree = document.querySelector("#currentTemp");
+  HTMLcurrentCelDegree.innerHTML = fahrenheit;
+  currentFarenheihtDegree = fahrenheit;
+}
+function fahrenheitToCelsius(event) {
+  event.preventDefault();
+  let celsius = ((currentFarenheihtDegree - 32) * 5) / 9;
+  let HTMLcurrentCFarDegree = document.querySelector("#currentTemp");
+  HTMLcurrentCFarDegree.innerHTML = Math.round(celsius);
+}
 
+let currentCelDegree = null;
+let currentFarenheihtDegree = null;
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
 let city = "Tehran";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
@@ -82,4 +97,10 @@ axios.get(currentWeatherApiUrl).then(displayTempurture);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
+
+let farenheightLink = document.querySelector("#convertToFarenheight");
+farenheightLink.addEventListener("click", convertToFarenheight);
+
+let celciousLink = document.querySelector("#convertToCelcious");
+celciousLink.addEventListener("click", fahrenheitToCelsius);
 
