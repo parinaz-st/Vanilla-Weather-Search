@@ -61,14 +61,25 @@ function displayTempurture(response) {
   htmlWind.innerHTML = wind;
   htmlIcon.setAttribute("src", iconLink);
   
-
-  // getFormattedDateTime(timestamp);
+}
+function searchCity(event){
+  event.preventDefault();
+  let HtmlCity = document.querySelector("#currentTown");
+  let enteredCity = document.querySelector("#input-city");
+  HtmlCity.innerHTML =enteredCity.value;
+  loadCityWeatherInfo(enteredCity.value);
+}
+function loadCityWeatherInfo(city){
+  // debugger;
+  let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
+  axios.get(currentWeatherApiUrl).then(displayTempurture);
 }
 
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
-let city = "Montreal";
+let city = "Tehran";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
-
-console.log(`api URl ${currentWeatherApiUrl}`);
-
 axios.get(currentWeatherApiUrl).then(displayTempurture);
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchCity);
+
