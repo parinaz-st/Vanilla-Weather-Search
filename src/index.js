@@ -61,24 +61,23 @@ function displayTempurture(response) {
   htmlHumidity.innerHTML = humidity;
   htmlWind.innerHTML = wind;
   htmlIcon.setAttribute("src", iconLink);
-  
 }
-function searchCity(event){
+function searchCity(event) {
   event.preventDefault();
   let HtmlCity = document.querySelector("#currentTown");
   let enteredCity = document.querySelector("#input-city");
-  HtmlCity.innerHTML =enteredCity.value;
+  HtmlCity.innerHTML = enteredCity.value;
   loadCityWeatherInfo(enteredCity.value);
 }
-function loadCityWeatherInfo(city){
+function loadCityWeatherInfo(city) {
   let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
   axios.get(currentWeatherApiUrl).then(displayTempurture);
 }
-function convertToFarenheight(event){
-  event.preventDefault();  
+function convertToFarenheight(event) {
+  event.preventDefault();
   celciousLink.classList.remove("active");
   farenheightLink.classList.add("active");
-  let fahrenheit = Math.round(((currentCelDegree * 9)/5) + 32);
+  let fahrenheit = Math.round((currentCelDegree * 9) / 5 + 32);
   let HTMLcurrentCelDegree = document.querySelector("#currentTemp");
   HTMLcurrentCelDegree.innerHTML = fahrenheit;
   currentFarenheihtDegree = fahrenheit;
@@ -90,7 +89,29 @@ function fahrenheitToCelsius(event) {
   let HTMLcurrentCFarDegree = document.querySelector("#currentTemp");
   HTMLcurrentCFarDegree.innerHTML = Math.round(currentCelDegree);
 }
-
+function addForecastColumn(day) {
+  forecastHtml =
+    forecastHtml +
+    `       
+            <div class="col-2">
+              <div class="weather-forcast-date">
+                ${day}
+              </div>
+              <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Clear" width="40">
+              <div class="weather-forcast-temp">
+                <span class="max">16°</span> <span class="min">10°</span>
+              </div> 
+            </div>                      
+`;
+}
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  forecastHtml = `<div class="row">`;
+  let dayArr = ["Sun", "Mon", "Thu"];
+  dayArr.forEach(addForecastColumn);
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML = forecastHtml;
+}
 let currentCelDegree = null;
 let currentFarenheihtDegree = null;
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
@@ -107,3 +128,7 @@ farenheightLink.addEventListener("click", convertToFarenheight);
 let celciousLink = document.querySelector("#convertToCelcious");
 celciousLink.addEventListener("click", fahrenheitToCelsius);
 
+let forecastElement = document.querySelector("#forecast");
+let forecastHtml = "";
+
+displayForecast();
