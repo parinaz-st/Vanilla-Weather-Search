@@ -104,10 +104,11 @@ function addForecastColumn(day) {
             </div>                      
 `;
 }
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   forecastHtml = `<div class="row">`;
-  let dayArr = ["Sun", "Mon", "Thu"];
+  let dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Friday"];
   dayArr.forEach(addForecastColumn);
   forecastHtml = forecastHtml + `</div>`;
   forecastElement.innerHTML = forecastHtml;
@@ -117,7 +118,10 @@ let currentFarenheihtDegree = null;
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
 let city = "Tehran";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
+let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
+
 axios.get(currentWeatherApiUrl).then(displayTempurture);
+axios.get(forecastApiUrl).then(displayForecast);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
@@ -131,4 +135,4 @@ celciousLink.addEventListener("click", fahrenheitToCelsius);
 let forecastElement = document.querySelector("#forecast");
 let forecastHtml = "";
 
-displayForecast();
+// displayForecast();
