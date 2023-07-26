@@ -9,21 +9,12 @@ function getFormattedTime() {
   return formattedCurrentTime;
 }
 
-function getFormattedDay() {
-  let today = new Date();
+function getFormattedDay(timestamp) {
+  let today = new Date(timestamp * 1000);
   let currentDay = today.getDay();
-  let dayArr = [
-    "Sunday",
-    "Monday",
-    "Thusday",
-    "Wednsday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  let dayArr = ["Sun", "Mon", "Thu", "Wed", "Thu", "Fri", "Sat"];
   return dayArr[currentDay];
 }
-
 function getFormattedDateTime(timestamp) {
   let date = new Date(timestamp);
   let hour = date.getHours().toString.padStart(2, "0");
@@ -68,10 +59,15 @@ function searchCity(event) {
   let enteredCity = document.querySelector("#input-city");
   HtmlCity.innerHTML = enteredCity.value;
   loadCityWeatherInfo(enteredCity.value);
+  loadCityForecastInfo(enteredCity.value);
 }
 function loadCityWeatherInfo(city) {
   let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
   axios.get(currentWeatherApiUrl).then(displayTempurture);
+}
+function loadCityForecastInfo(city) {
+  forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
+  axios.get(forecastApiUrl).then(displayForecast);
 }
 function convertToFarenheight(event) {
   event.preventDefault();
@@ -89,34 +85,43 @@ function fahrenheitToCelsius(event) {
   let HTMLcurrentCFarDegree = document.querySelector("#currentTemp");
   HTMLcurrentCFarDegree.innerHTML = Math.round(currentCelDegree);
 }
-function addForecastColumn(day) {
-  forecastHtml =
-    forecastHtml +
-    `       
+function addForecastColumn(forecastday, index) {
+  if (index < 6) {
+    forecastHtml =
+      forecastHtml +
+      `       
             <div class="col-2">
               <div class="weather-forcast-date">
-                ${day}
+                ${getFormattedDay(forecastday.time)}
               </div>
-              <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Clear" width="40">
+              <img src="${forecastday.condition.icon_url}" alt="${
+        forecastday.condition.icon
+      }" width="40">
               <div class="weather-forcast-temp">
-                <span class="max">16°</span> <span class="min">10°</span>
+                <span class="max">${Math.round(
+                  forecastday.temperature.maximum
+                )}°</span> <span class="min">${Math.round(
+        forecastday.temperature.minimum
+      )}</span>
               </div> 
             </div>                      
 `;
+  }
 }
 function displayForecast(response) {
   console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   forecastHtml = `<div class="row">`;
   let dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Friday"];
-  dayArr.forEach(addForecastColumn);
+  forecast.forEach(addForecastColumn);
   forecastHtml = forecastHtml + `</div>`;
   forecastElement.innerHTML = forecastHtml;
 }
 let currentCelDegree = null;
 let currentFarenheihtDegree = null;
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
-let city = "Tehran";
+let city = "berlin";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
 let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
 

@@ -51,32 +51,44 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
-a{
+a {
   text-decoration: none;
 }
-.weather-temperature .active{
+.weather-temperature .active {
   color: black;
   cursor: default;
 }
-.weather-forcast{
-  text-align: center;  
+.weather-forcast {
+  text-align: center;
   margin-top: 10px;
 }
-.weather-forcast img{
-  display:block;
-  text-align: center;  
+.weather-forcast img {
+  display: block;
+  text-align: center;
   margin-left: 15px;
 }
-.weather-forcast-date{
+.weather-forcast-date {
   font-size: 16px;
   color: #878787;
 }
-.weather-forcast-temp{
+.weather-forcast-temp {
   font-size: 12px;
 }
-.weather-forcast-temp .max{
+.weather-forcast-temp .max {
   color: black;
 }
-.weather-forcast-temp .min{
+.weather-forcast-temp .min {
   opacity: 0.7;
+}
+.footnote {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+.myname {
+  color: blue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
