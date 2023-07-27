@@ -14,6 +14,10 @@ ul {
   margin: 0;
   padding: 0;
 }
+.btn{
+  background-color: rgb(77, 176, 247);
+  border: rgb(77, 176, 247);
+}
 li {
   list-style: none;
   color: rgb(135, 135, 135);
