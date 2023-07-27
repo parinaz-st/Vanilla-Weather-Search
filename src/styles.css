@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  color: #878787;
+  color: #4b4a4a;
   display: block;
   font-size: 24px;
   font-weight: 100;
@@ -21,7 +21,6 @@ li {
 }
 
 .weather-app-wrapper {
-  /* text-align: center; */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -29,6 +28,9 @@ li {
   border: 1px solid #dadde1;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: 4px 3px 3px rgb(215, 210, 210); 
+  /* background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);  */
+  background: linear-gradient(89.9deg, rgb(208, 246, 255) 0.1%, rgb(255, 237, 237) 47.9%, rgb(255, 255, 231) 100.2%);
 }
 .overview {
   margin-bottom: 20px;
@@ -91,4 +93,10 @@ a {
 .myname {
   color: blue;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+}
+.celcius{
+  position: relative;
+  font-size: 8px;
+  top: -3px;
 }

@@ -100,9 +100,9 @@ function addForecastColumn(forecastday, index) {
               <div class="weather-forcast-temp">
                 <span class="max">${Math.round(
                   forecastday.temperature.maximum
-                )}°</span> <span class="min">${Math.round(
+                )}<span class = "celcius">°C</span></span> <span class="min">${Math.round(
         forecastday.temperature.minimum
-      )}</span>
+      )}<span class = "celcius">°C</span></span>
               </div> 
             </div>                      
 `;
@@ -121,7 +121,7 @@ function displayForecast(response) {
 let currentCelDegree = null;
 let currentFarenheihtDegree = null;
 let apikey = "5foc97f943acfcb7c3t9b06b75ad0023";
-let city = "berlin";
+let city = "Tehran";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
 let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
 
