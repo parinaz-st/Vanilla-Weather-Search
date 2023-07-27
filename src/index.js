@@ -1,30 +1,25 @@
-function getFormattedTime() {
+function getFormattedCurrentTime() {
   let today = new Date();
   let formattedCurrentTime = `
   ${today.getHours().toString().padStart(2, "0")} : ${today
     .getMinutes()
     .toString()
     .padStart(2, "0")}`;
-
   return formattedCurrentTime;
 }
-
-function getFormattedDay(timestamp) {
-  let today = new Date(timestamp * 1000);
+function getFormattedToday() {
+  let today = new Date();
   let currentDay = today.getDay();
+  let dayArr = ["Sunday", "Monday", "Thusday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  return dayArr[currentDay];
+}
+function getFormattedDay(timestamp) {
+  let day = new Date(timestamp * 1000);
+  let currentDay = day.getDay();
   let dayArr = ["Sun", "Mon", "Thu", "Wed", "Thu", "Fri", "Sat"];
   return dayArr[currentDay];
 }
-function getFormattedDateTime(timestamp) {
-  let date = new Date(timestamp);
-  let hour = date.getHours().toString.padStart(2, "0");
-  let minutes = date.getMinutes().toString().padStart(2, "0");
-  //Get FormattedDay()
-  // change this function to return both date and time
-}
-
-function displayTempurture(response) {
-  console.log(response);
+function displayCurrentTempurture(response) {
   let currentTemp = Math.round(response.data.temperature.current);
   currentCelDegree = response.data.temperature.current;
   let currentTown = response.data.city;
@@ -33,7 +28,6 @@ function displayTempurture(response) {
   let wind = Math.round(response.data.wind.speed);
   let timestamp = response.data.time;
   let iconLink = response.data.condition.icon_url;
-  console.log(iconLink);
 
   let htmlCurrentTemp = document.querySelector("#currentTemp");
   let htmlCurrentTown = document.querySelector("#currentTown");
@@ -46,8 +40,8 @@ function displayTempurture(response) {
 
   htmlCurrentTown.innerHTML = currentTown;
   htmlCurrentDesc.innerHTML = currentDescription;
-  htmlCurrentDay.innerHTML = getFormattedDay();
-  htmlCurrentTime.innerHTML = getFormattedTime();
+  htmlCurrentDay.innerHTML = getFormattedToday();
+  htmlCurrentTime.innerHTML = getFormattedCurrentTime();
   htmlCurrentTemp.innerHTML = currentTemp;
   htmlHumidity.innerHTML = humidity;
   htmlWind.innerHTML = wind;
@@ -63,13 +57,13 @@ function searchCity(event) {
 }
 function loadCityWeatherInfo(city) {
   let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
-  axios.get(currentWeatherApiUrl).then(displayTempurture);
+  axios.get(currentWeatherApiUrl).then(displayCurrentTempurture);
 }
 function loadCityForecastInfo(city) {
   forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
   axios.get(forecastApiUrl).then(displayForecast);
 }
-function convertToFarenheight(event) {
+function convertToFahrenheit(event) {
   event.preventDefault();
   celciousLink.classList.remove("active");
   farenheightLink.classList.add("active");
@@ -109,11 +103,9 @@ function addForecastColumn(forecastday, index) {
   }
 }
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   forecastHtml = `<div class="row">`;
-  let dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Friday"];
   forecast.forEach(addForecastColumn);
   forecastHtml = forecastHtml + `</div>`;
   forecastElement.innerHTML = forecastHtml;
@@ -125,19 +117,17 @@ let city = "Tehran";
 let currentWeatherApiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&unit=metrics`;
 let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&unit=metrics`;
 
-axios.get(currentWeatherApiUrl).then(displayTempurture);
+axios.get(currentWeatherApiUrl).then(displayCurrentTempurture);
 axios.get(forecastApiUrl).then(displayForecast);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
 
-let farenheightLink = document.querySelector("#convertToFarenheight");
-farenheightLink.addEventListener("click", convertToFarenheight);
+let farenheightLink = document.querySelector("#convertToFahrenheit");
+farenheightLink.addEventListener("click", convertToFahrenheit);
 
 let celciousLink = document.querySelector("#convertToCelcious");
 celciousLink.addEventListener("click", fahrenheitToCelsius);
 
 let forecastElement = document.querySelector("#forecast");
 let forecastHtml = "";
-
-// displayForecast();

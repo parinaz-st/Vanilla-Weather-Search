@@ -1,7 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
 h1 {
   color: #4b4a4a;
   display: block;
@@ -14,16 +13,17 @@ ul {
   margin: 0;
   padding: 0;
 }
-.btn{
-  background-color: rgb(77, 176, 247);
-  border: rgb(77, 176, 247);
+a {
+  text-decoration: none;
 }
 li {
   list-style: none;
   color: rgb(135, 135, 135);
   font-size: 16px;
 }
-
+li:first-letter {
+  text-transform: capitalize;
+}
 .weather-app-wrapper {
   max-width: 600px;
   margin: 0 auto;
@@ -39,7 +39,6 @@ li {
 .overview {
   margin-bottom: 20px;
 }
-
 .weather-temperature img {
   margin-right: 15px;
   height: 64px;
@@ -53,12 +52,6 @@ li {
   position: relative;
   font-size: 16px;
   top: -2px;
-}
-li:first-letter {
-  text-transform: capitalize;
-}
-a {
-  text-decoration: none;
 }
 .weather-temperature .active {
   color: black;
@@ -104,3 +97,8 @@ a {
   font-size: 8px;
   top: -3px;
 }
+.btn{
+  background-color: rgb(77, 176, 247);
+  border: rgb(77, 176, 247);
+}
+
